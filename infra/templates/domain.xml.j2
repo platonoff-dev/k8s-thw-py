@@ -1,0 +1,26 @@
+<domain type='hvf'>
+  <name>{{ name }}</name>
+  <memory>{{ memory }}</memory>
+  <currentMemory>{{ memory }}</currentMemory>
+  <vcpu>{{ cpu }}</vcpu>
+  <os>
+    <type arch='arm64' machine='pc'>hvm</type>
+    <boot dev='cdrom'/>
+  </os>
+  <devices>
+    <emulator>/usr/bin/qemu-system-x86_64</emulator>
+    <disk type='file' device='cdrom'>
+      <source file='/home/user/boot.iso'/>
+      <target dev='hdc'/>
+      <readonly/>
+    </disk>
+    <disk type='file' device='disk'>
+      <source file='{{ image_file }}'/>
+      <target dev='hda'/>
+    </disk>
+    <interface type='network'>
+      <source network='{{ network_name }}'/>
+    </interface>
+    <graphics type='vnc' port='-1'/>
+  </devices>
+</domain>
