@@ -20,7 +20,7 @@ def start() -> None:
     virt_conn = libvirt.open()
     virt_manager = VirtManager(virt_conn)
 
-    netwrok = virt_manager.create_netowrk("k8s-thw")
+    network = virt_manager.ensure_network("k8s-thw")
 
     # Create vms for master nodes
     for i in range(1):
@@ -28,15 +28,18 @@ def start() -> None:
             name=f"master-{i+1}",
             cpu=2,
             memory=2048,
-            disk_size=20
+            disk_size=20,
+            network=network.name(),
         )
 
+    # Create vms for worker nodes
     for i in range(2):
         virt_manager.create_vm(
             name=f"worker-{i+1}",
             cpu=2,
             memory=2048,
-            disk_size=20
+            disk_size=20,
+            network=network.name(),
         )
 
 

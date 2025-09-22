@@ -1,10 +1,5 @@
 <network>
   <name>{{ name }}</name>
-  <forward mode='nat'/>
-  <bridge name='virbr0'/>
-  <ip address='10.0.0.1' netmask='255.255.255.0'>
-    <dhcp>
-      <range start='10.0.0.2' end='10.0.0.255'/>
-    </dhcp>
-  </ip>
+  <forward mode='bridge'/>
+  <bridge name='virbr1'/>
 </network>
