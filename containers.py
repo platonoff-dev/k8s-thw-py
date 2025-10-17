@@ -7,9 +7,6 @@ from podman.domain.images import Image
 from podman.domain.networks import Network
 import yaspin
 
-from podman_client import PodmanClient
-
-
 class ContainerManager:
     def __init__(self, client: podman.PodmanClient):
         self.client = client
