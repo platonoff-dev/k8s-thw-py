@@ -1,5 +1,5 @@
-FROM ubuntu:latest
+FROM fedora:44
 
-RUN apt-get update && apt-get install -y init
+RUN dnf install -y systemd bind-utils 
 
 CMD ["/sbin/init"]
